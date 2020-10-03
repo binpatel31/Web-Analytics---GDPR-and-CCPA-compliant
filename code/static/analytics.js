@@ -1108,3 +1108,10 @@ console.log(fingerprint_timezone());
 console.log(fingerprint_useragent());
 
 console.log(fingerprint_truebrowser());
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "/json_data", true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send(JSON.stringify({
+    uid: uid
+}));
