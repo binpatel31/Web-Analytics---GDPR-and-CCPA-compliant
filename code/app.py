@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, abort, make_response, request, render_template, url_for
 import json
+import requests
+from elasticsearch import Elasticsearch
 
 app = Flask(__name__)
 
@@ -15,7 +17,8 @@ def create_todo_note():
 def get_json_data():
     if request.method == 'POST':
         data = request.get_json()
-        print(data)
+        es = Elasticsearch([{'host':'localhost','port':9200}])
+        res = es.index(index='my-index-000001', body=data)
     return '', 200
 
 

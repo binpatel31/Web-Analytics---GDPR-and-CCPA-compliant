@@ -1113,5 +1113,10 @@ var xhr = new XMLHttpRequest();
 xhr.open("POST", "/json_data", true);
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify({
-    uid: uid
+    uid: uid,
+    browser: fingerprint_browser(),
+    resolution: fingerprint_display(),
+    os: fingerprint_os(),
+    timezone: fingerprint_timezone(),
+    user_agent: fingerprint_useragent()
 }));
