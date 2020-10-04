@@ -17,7 +17,7 @@ def create_todo_note():
 def get_json_data():
     if request.method == 'POST':
         data = request.get_json()
-        es = Elasticsearch([{'host':'localhost','port':9200}])
+        es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
         res = es.index(index='my-index-000001', body=data)
     return '', 200
 
