@@ -14,14 +14,25 @@ POST implementation: creation of new user record
 def home_page():
     return render_template("webpage.html")
 
-
 @app.route("/json_data", methods=["POST","GET"])
 def get_json_data():
     if request.method == 'POST':
         data = request.get_json()
+        ### get city, state and country name
+        url = "https://api.ipgeolocation.io/ipgeo?apiKey=2b1ee37501e64754b85f704fab4a5b82&ip="+data["ip"]
+        resp = requests.get(url=url)
+        info = resp.json()
+        ###
+        data["country"] = info["country_name"]
+        data["city"] = info["city"]
+        data["state"] = info["state_prov"]
         data["time"] = datetime.datetime.now().strftime("%Y-%m-%d %H")
-        es = Elasticsearch([{'host':'localhost','port':9200}])
-        res = es.index(index='my-index-000001', body=data)
+
+        print("********-------------*****")
+        print("Data to send is ", data)
+        print("*******--------------*****")
+        #es = Elasticsearch([{'host':'localhost','port':9200}])
+        #res = es.index(index='my-index-000001', body=data)
     return '', 200
 
 
