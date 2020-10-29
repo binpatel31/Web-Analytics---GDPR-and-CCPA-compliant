@@ -26,7 +26,7 @@ def get_json_data():
         data["country"] = info["country_name"]
         data["city"] = info["city"]
         data["state"] = info["state_prov"]
-        data["time"] = datetime.datetime.now().strftime("%Y-%m-%d %H")
+        data["time"] = datetime.datetime.now().isoformat()#strftime("%Y-%m-%d %H:%M:%S").isoformat()
 
         print("********-------------*****")
         print("Data to send is ", data)
