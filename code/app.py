@@ -1,35 +1,40 @@
-from flask import Flask, jsonify, abort, make_response, request
+from flask import Flask, jsonify, abort, make_response, request, render_template, url_for
 import json
+import requests
+from elasticsearch import Elasticsearch
+import datetime
+
 app = Flask(__name__)
 
 
 '''
-POST implementation: creation of new todo
+POST implementation: creation of new user record
 '''
-@app.route('/add', methods = ['POST'])
-def create_todo_note():
-        if not request:
-                abort(400)
-        data = json.loads(request.data)
-        print(data)
-        '''
-        dic = {str(request.json['title']):[]}
-        with open('data.json', 'r') as outfile:
-                data = json.load(outfile)
-                all_todos = data["all_todos"]
-        
-        all_todos.append(dic)
-        with open('data.json', 'w') as outfile:
-                json.dump({"all_todos":all_todos}, outfile)
+@app.route('/')
+def home_page():
+    return render_template("webpage.html")
 
+@app.route("/json_data", methods=["POST","GET"])
+def get_json_data():
+    if request.method == 'POST':
+        data = request.get_json()
+        ### get city, state and country name
+        url = "https://api.ipgeolocation.io/ipgeo?apiKey=2b1ee37501e64754b85f704fab4a5b82&ip="+data["ip"]
+        resp = requests.get(url=url)
+        info = resp.json()
+        ###
+        data["country"] = info["country_name"]
+        data["city"] = info["city"]
+        data["state"] = info["state_prov"]
+        data["time"] = datetime.datetime.now().strftime("%Y-%m-%d %H")
 
-        return jsonify({ 'List of all todos notes' : all_todos }),201
-	
-
-                json.dump({"all_todos":all_todos}, outfile)
-        '''
-        return jsonify({ 'Hello' : "world" }),201
+        print("********-------------*****")
+        print("Data to send is ", data)
+        print("*******--------------*****")
+        #es = Elasticsearch([{'host':'localhost','port':9200}])
+        #res = es.index(index='my-index-000001', body=data)
+    return '', 200
 
 
 if __name__ == '__main__':
-	app.run(debug = True)
+    app.run(host="0.0.0.0", debug = True)
