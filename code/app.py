@@ -31,8 +31,8 @@ def get_json_data():
         print("********-------------*****")
         print("Data to send is ", data)
         print("*******--------------*****")
-        #es = Elasticsearch([{'host':'localhost','port':9200}])
-        #res = es.index(index='my-index-000001', body=data)
+        es = Elasticsearch([{'host':'localhost','port':9200}])
+        res = es.index(index='my-index-000001', body=data)
     return '', 200
 
 
