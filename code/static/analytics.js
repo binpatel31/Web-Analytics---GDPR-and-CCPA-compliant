@@ -533,15 +533,28 @@ info.then(function(result)  {
 			resolution: res,
 			os: os_version,
 			timezone: time_zone,
-			user_agent: useragent
+			user_agent: useragent,
+			language: navigator.language,
+			deviceMemory: navigator.deviceMemory,
+			hardwareConcurrency: navigator.hardwareConcurrency,
+			platform: navigator.platform,
+			vendor: navigator.vendor,
+			vendorSub: navigator.vendorSub,
+			maxTouchPoints: navigator.maxTouchPoints
 		})); 
 	});
 
+console.log("===");
 console.log(uid);
 console.log(fingerprint_browser());
 console.log(fingerprint_display());
 console.log(fingerprint_os());
 console.log(fingerprint_timezone());
 console.log(fingerprint_useragent());
-
-
+console.log(navigator.language);
+console.log(navigator.deviceMemory);
+console.log(navigator.hardwareConcurrency);
+console.log(navigator.platform);
+console.log(navigator.vendor);
+console.log(navigator.vendorSub);
+console.log(navigator.maxTouchPoints);
