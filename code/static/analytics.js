@@ -512,6 +512,14 @@ var res = fingerprint_display();
 var os_version = fingerprint_os();
 var time_zone = fingerprint_timezone();
 var useragent = fingerprint_useragent();
+// detect isMobile or Desktop
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+var platform = "";
+if (isMobile){
+        platform = "Mobile";}
+else {
+        platform = "Desktop";}
+//
 
 var key = browser_name+"#"+res+"#"+os_version+"#"+time_zone+"#"+useragent;
 
@@ -534,6 +542,7 @@ info.then(function(result)  {
 			os: os_version,
 			timezone: time_zone,
 			user_agent: useragent,
+			platform: platform,
 			language: navigator.language,
 			deviceMemory: navigator.deviceMemory,
 			hardwareConcurrency: navigator.hardwareConcurrency,
@@ -544,7 +553,6 @@ info.then(function(result)  {
 		})); 
 	});
 
-console.log("===");
 console.log(uid);
 console.log(fingerprint_browser());
 console.log(fingerprint_display());
