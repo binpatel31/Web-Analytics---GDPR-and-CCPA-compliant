@@ -531,12 +531,13 @@ info = Promise.resolve(info);
 info.then(function(result)  {
 		const ips = result["ip"];
 		// sending to python server
+		// uid is the hash (murmur3_32 hash)
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "/json_data", true);
 		xhr.setRequestHeader('Content-Type', 'application/json');
 		xhr.send(JSON.stringify({
 			ip: ips,
-			uid: uid,
+			uid: uid,  
 			browser: browser_name,
 			resolution: res,
 			os: os_version,
@@ -544,12 +545,8 @@ info.then(function(result)  {
 			user_agent: useragent,
 			platform: platform,
 			language: navigator.language,
-			deviceMemory: navigator.deviceMemory,
-			hardwareConcurrency: navigator.hardwareConcurrency,
-			platform: navigator.platform,
 			vendor: navigator.vendor,
 			vendorSub: navigator.vendorSub,
-			maxTouchPoints: navigator.maxTouchPoints
 		})); 
 	});
 
@@ -560,9 +557,5 @@ console.log(fingerprint_os());
 console.log(fingerprint_timezone());
 console.log(fingerprint_useragent());
 console.log(navigator.language);
-console.log(navigator.deviceMemory);
-console.log(navigator.hardwareConcurrency);
-console.log(navigator.platform);
 console.log(navigator.vendor);
 console.log(navigator.vendorSub);
-console.log(navigator.maxTouchPoints);
