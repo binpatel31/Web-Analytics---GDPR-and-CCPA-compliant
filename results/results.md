@@ -4,5 +4,5 @@
 - Using our script  - Average load time is 7 ms
 
 ### 2) Script size (in KB)
-- GA - 
-- Our Script - 
+- GA - 191 KB (orginal JS file) and 97 KB (minified version .min.js)
+- Our Script - <21 KB (Original JS file) and 9 KB (minified version .min.js)
