@@ -146,7 +146,7 @@ function fingerprint_display() {
     try {
         strScreen = window.screen;
         if (strScreen) {
-            strDisplay = strScreen.colorDepth + strSep + strScreen.width + strSep + strScreen.height + strSep + strScreen.availWidth + strSep + strScreen.availHeight;
+            strDisplay = strScreen.colorDepth + strSep + strScreen.width + strSep + strScreen.height;
         }
         strOut = strDisplay;
         return strOut;
