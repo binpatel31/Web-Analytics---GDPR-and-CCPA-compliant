@@ -544,6 +544,7 @@ info.then(function(result)  {
 			timezone: time_zone,
 			user_agent: useragent,
 			platform: platform,
+			platformmodel: navigator.platform,
 			language: navigator.language,
 			vendor: navigator.vendor,
 			vendorSub: navigator.vendorSub,
