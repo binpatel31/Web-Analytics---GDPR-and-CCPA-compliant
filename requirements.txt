@@ -1,2 +1,4 @@
-flask
-elasticsearch
+numpy==1.19.0
+pandas==1.1.4
+scikit_learn==0.23.2
+tensorflow==2.3.1
